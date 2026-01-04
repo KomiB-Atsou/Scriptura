@@ -1,0 +1,76 @@
+nodes:
+  - type: Verse
+    description: "Un verset biblique"
+    properties:
+      - id: string
+      - book: string
+      - chapter: int
+      - verse: int
+      - text: string
+      - translation: string
+
+  - type: Concept
+    description: "Idée ou notion biblique ou théologique"
+    properties:
+      - name: string
+      - description: string
+
+  - type: Theme
+    description: "Thème transversal"
+    properties:
+      - name: string
+
+  - type: Personnage
+    description: "Personnage biblique"
+    properties:
+      - name: string
+
+  - type: Place
+    description: "Lieu biblique"
+    properties:
+      - name: string
+
+  - type: Document
+    description: "Livre, article, PDF"
+    properties:
+      - title: string
+      - author: string
+
+  - type: Enseignement
+    description: "Enseignement"
+    properties:
+      - title: string
+      - author: string
+      - date :
+
+  - type: Source
+    description: "Auteur ou référence"
+    properties:
+      - title: string
+      - type: string
+
+  - type: Commentary
+    description: "Commentaire ou note exégétique"
+    properties:
+      - content: string
+      - author: string
+
+relationships:
+  - name: HAS_COMMENT
+    from: Verse
+    to: Commentary
+  - name: HAS_THEME
+    from: Verse
+    to: Theme
+  - name: MENTIONS
+    from: Verse
+    to: Personnage
+  - name: TAKES_PLACE_IN
+    from: Verse
+    to: Place
+  - name: RELATED_TO
+    from: Concept
+    to: Verse|Theme|Document
+  - name: FROM_SOURCE
+    from: Commentary
+    to: Source
